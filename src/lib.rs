@@ -24,6 +24,19 @@ pub fn find_unsafe_number(safe: usize, numbers: &[Number]) -> Option<Number> {
 mod tests {
     use super::*;
 
+    #[test]
+    fn it_works() {
+        let numbers: Vec<Number> = EXAMPLE
+            .lines()
+            .map(|line| line.parse().expect("should parse number"))
+            .collect();
+
+        let unsafe_number =
+            find_unsafe_number(5, &numbers).expect("should find an unsecured number");
+
+        assert_eq!(unsafe_number, 127);
+    }
+
     const EXAMPLE: &str = "\
 35
 20
@@ -46,17 +59,4 @@ mod tests {
 309
 576
 ";
-
-    #[test]
-    fn it_works() {
-        let numbers: Vec<Number> = EXAMPLE
-            .lines()
-            .map(|line| line.parse().expect("should parse number"))
-            .collect();
-
-        let unsafe_number =
-            find_unsafe_number(5, &numbers).expect("should find an unsecured number");
-
-        assert_eq!(unsafe_number, 127);
-    }
 }
